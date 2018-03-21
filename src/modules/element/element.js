@@ -1,7 +1,6 @@
 import { IdManager } from '../../index';
 
-export default class _Element {
-  constructor( tagName, attributes, ...children ){
+export default function CreateElement( tagName, attributes, ...children ) {
     if( attributes instanceof _Element || typeof attributes !== 'object' ) {
       children.splice(0,0, attributes);
       attributes = undefined;
@@ -15,31 +14,31 @@ export default class _Element {
     if ( children ) this.assignChildren( children );
   }
 
-  assignAllAttributes( attributes = {} ){
+  function assignAllAttributes( attributes = {} ){
     for (const key in attributes) {
       const value = attributes[ key ];
       this.assignAttribute( key, value );
     }
   }
 
-  assignValue( value ){
+  function assignValue( value ){
     if( !value ) return;
     this.$.innerHTML = value;
   }
 
-  assignAttribute( attrName, value ){
+  function assignAttribute( attrName, value ){
     let attr = document.createAttribute( attrName );
     if ( value ) attr.value = value;
     return this.$.setAttributeNode( attr );
   }
 
-  assignChild( child ){
+  function assignChild( child ){
     this.children.push( child );
     child.childOf = this.__ID;
     this.$.appendChild( child.getElement() );
   }
 
-  assignChildren( children ){
+  function assignChildren( children ){
     if( !children ) return;
     let cl = children.length;
     for (let index = 0; index < cl; index++) {
@@ -48,7 +47,7 @@ export default class _Element {
     }
   }
 
-  getElement(){
+  function getElement(){
     return this.$;
   }
 }
