@@ -2,6 +2,12 @@
 let regids = [];
 let nextid = 0;
 
+function getNextID(){
+  let id = nextid;
+  nextid++;
+  return id;
+}
+
 function __register( id ){
   //if ( regids.indexOf( id ) === -1 ){
   regids.push( id );
@@ -10,17 +16,16 @@ function __register( id ){
   return false;*/
 }
 
-export default class IdManager {
-  static Generate(){
+export default {
+  Generate(){
     /*let id = Math.floor( Math.random() * 10000000000 );
     return __register( id ) ? id : this.Generate();*/
-    let id = nextid;
+    let id = getNextID();
     __register( id );
-    nextid++;
     return id;
-  }
+  },
 
-  static Delete( id ){
+  Delete( id ){
     let pos = regids.indexOf( id );
   
     if ( pos === -1) return false;
@@ -28,10 +33,10 @@ export default class IdManager {
     regids.splice( pos, 1 );
   
     return true;
-  }
+  },
 
-  static clearIds(){
+  clearIds(){
     regids = [];
   }
 
-}
+};
