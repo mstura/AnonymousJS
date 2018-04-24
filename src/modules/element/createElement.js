@@ -16,7 +16,6 @@ function assignChild( element, child ){
 }
 
 function assignChildren( element, children ){
-  if( !children ) return;
   let cl = children.length;
   for (let index = 0; index < cl; index++) {
     const child = children[ index ];
@@ -29,8 +28,8 @@ export default function createElement( tagName, attributes, ...children ) {
     
   let element = document.createElement( tagName );
 
-  assignAllAttributes( element, attributes );
-  assignChildren( element, children );
+  if ( attributes ) assignAllAttributes( element, attributes );
+  if( children ) assignChildren( element, children );
 
   return element;
 }

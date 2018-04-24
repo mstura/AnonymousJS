@@ -1,6 +1,6 @@
 {
   "name": "swift-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "lightweight framework designed to create a composable environment that is easy to maintain and structure",
   "main": "src/index.js",
   "scripts": {
