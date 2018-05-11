@@ -2,7 +2,7 @@ import { it, describe } from 'mocha';
 import { assert } from 'chai';
 import { createElement } from '../../src/index';
 
-describe('Element creation and manipulation', () => {
+describe('createElement.js', () => {
 
   require( 'jsdom-global' )();
 
