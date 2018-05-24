@@ -1,6 +1,6 @@
 import { it, describe } from 'mocha';
 import { assert } from 'chai';
-import {Struct, Enum, fString} from '../../src/index';
+import {Struct, Enum, fString, KeyMap} from '../../src/index';
 
 describe('Data Constructs', () => {
   it('struct.js - should produce a Struct factory', () => {
@@ -52,5 +52,22 @@ describe('Data Constructs', () => {
     assert.equal(formatter.print('foo', 'bar', 'tang'), 'this foo is a string formating bar and it should create foo and tang');
     assert.equal(emptyFormatter.print(), 'this {0} is a string formating {1} and it should create {0} and {2}');
     assert.equal(emptyFormatter.print('foo', 'bar', 'play'), 'this foo is a string formating bar and it should create foo and play');
+  });
+
+  it('KeyMap.js should return a frozen mapping of the keys of an object mapped to the key names', () => {
+    const object = {
+      hello:'world',
+      1: 'world',
+      foo: 'bar'
+    };
+
+    const map = KeyMap( object );
+
+    assert.property(map, 'hello');
+    assert.equal(map.hello, 'hello');
+    assert.property(map, 'foo');
+    assert.equal(map.foo, 'foo');
+    assert.property(map, 1);
+    assert.equal(map[1], 1);
   });
 });
