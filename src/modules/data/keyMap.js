@@ -1,4 +1,4 @@
-export default function KeyMap( objectToMap ){
+export default function KeyMap( objectToMap, transform ){
   const __keys = Object.keys( objectToMap ),
     l = __keys.length;
 
@@ -18,8 +18,10 @@ export default function KeyMap( objectToMap ){
   };
 
   for (let i = 0; i < l; i++) {
-    const key = __keys[i];
-    o[key] = key;
+    const keyValue = __keys[i],
+      objKey = transform ? transform(keyValue) : keyValue;
+    
+    o[objKey] = keyValue;
   }
 
   return Object.freeze(o);

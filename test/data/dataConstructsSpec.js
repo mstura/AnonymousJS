@@ -70,4 +70,21 @@ describe('Data Constructs', () => {
     assert.property(map, 1);
     assert.equal(map[1], 1);
   });
+
+  it('KeyMap.js should return a frozen mapping of the keys of an object mapped to the transformed key names', () => {
+    const object = {
+      heLLo:'world',
+      fFc: 'world',
+      foo: 'bar'
+    };
+
+    const map = KeyMap( object, ( key ) => key.toLowerCase() );
+
+    assert.property(map, 'hello');
+    assert.equal(map.hello, 'heLLo');
+    assert.property(map, 'foo');
+    assert.equal(map.foo, 'foo');
+    assert.property(map, 'ffc');
+    assert.equal(map.ffc, 'fFc');
+  });
 });
