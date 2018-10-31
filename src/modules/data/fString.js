@@ -8,13 +8,14 @@ export default function fString( str, ...defaultValues ){
   };
 
   return this;
+
+  function formatString( str, ...args ){
+    const r = /{(\d+)}/g;
+    return str.replace( r, ( match, number ) => {
+      return args[number] !== undefined
+        ? args[number]
+        : match;
+    });
+  }
 }
 
-function formatString( str, ...args ){
-  const r = /{(\d+)}/g;
-  return str.replace( r, ( match, number ) => {
-    return args[number] !== undefined
-      ? args[number]
-      : match;
-  });
-}

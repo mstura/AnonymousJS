@@ -4,7 +4,7 @@ import { IdManager } from '../../src/index';
 
 describe('IdManager', () => {
   const ids = [],
-    count = 60000;
+    count = 50000;
   it('should generate new ids that do not collide', () => {
     for (let index = 0; index < count; index++) {
       const id = IdManager.Generate();
